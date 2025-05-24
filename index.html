@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Jeu Concours Saint Valentin - Floral Concept</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffe6e6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .main-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: url('images/background.jpeg') no-repeat center center fixed;
+      background-size: 100%;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      background: #ff4d4d;
+      color: white;
+      padding: 2rem 1rem;
+      width: 100%;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .first-p {
+      width: 80%;
+      margin: 0.5rem auto 0;
+      text-align: center;
+      color: #84142D;
+    }
+
+    .container {
+      display: none;
+      max-width: 600px;
+      padding: 2rem 1rem;
+      background: white;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 70%;
+      border-radius: 8px;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .car {
+      max-width: 300px;
+      width: 60%;
+      border-radius: 8px;
+    }
+
+    .coupon {
+      max-width: 200px;
+      width: 30%;
+      border-radius: 8px;
+    }
+
+
+    input {
+      padding: 0.75rem;
+      width: 80%;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 1rem;
+      color: green;
+      font-weight: bold;
+    }
+
+    .success-button {
+      display: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #ff4d4d;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 1rem;
+      color: #777;
+      text-align: center;
+    }
+
+    .first {
+      display: block;
+    }
+
+    .third {
+      display: none;
+      max-width: 600px;
+      padding: 2rem 1rem;
+      background: white;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Jeu concours Saint Valentin</h1>
+  </header>
+
+  <div class="main-content">
+
+    <div class="image-container">
+      <img class="car" src="images/voiture.jpeg" alt="Renault Clio Rouge">
+      <img class="coupon" src="images/bon.png" alt="Bon d'achat">
+    </div>
+
+    <div class="first" id="first-step">
+      <p class="first-p">Célébrez les 10 ans de Floral Concept et tentez de gagner <strong> une Renault Clio</strong> ou
+        des bons
+        d’achat
+        allant jusqu’à <strong>1000dh</strong> !</p>
+      <button onclick="participate()">Je Participe</button>
+    </div>
+
+    <div class="container" id="second-step">
+      <p>Entrez votre nom et numéro de téléphone pour participer au tirage au sort :</p>
+      <form onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Prénom et nom" required pattern="[A-Za-zÀ-ÿ\s'-]{3,}"
+          title="Veuillez entrer un nom valide">
+        <input type="tel" id="phone" placeholder="06xxxxxxxx" pattern="^0[6-7]\d{8}$">
+        <button type="submit">Valider</button>
+      </form>
+    </div>
+
+    <div class="third" id="third-step">
+      <p>Merci pour votre participation, nous vous souhaitons bonne chance et un bon Saint Valentin</p>
+      <button onclick="new_participant()">Nouveau participant</button>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 Floral Concept - Tous droits réservés
+  </footer>
+
+
+  <script>
+    function participate() {
+      document.getElementById('first-step').style.display = 'none';
+      document.getElementById('second-step').style.display = 'block';
+    }
+    function submitForm(event) {
+      event.preventDefault();
+      const phone = document.getElementById('phone').value;
+      const pattern = /^0[6-7]\d{8}$/;
+      if (pattern.test(phone)) {
+        document.getElementById('second-step').style.display = 'none';
+        document.getElementById('third-step').style.display = 'block';
+      } else {
+        alert("Veuillez entrer un numéro valide (ex: 06xxxxxxxx)");
+      }
+    }
+    function new_participant() {
+      document.getElementById('third-step').style.display = '';
+      document.getElementById('first-step').style.display = 'block';
+    }
+  </script>
+
+</body>
+
+</html>
